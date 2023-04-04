@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator Display</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css">
+    <style>
+        .calc-button {
+            background-color: #e2e8f0;
+            color: #2d3748;
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body class="p-4">
+    <div class="bg-white rounded-lg shadow-lg p-4 w-64">
+        <div class="flex justify-end">
+            <span class="text-gray-400 text-2xl mr-2">=</span>
+            <span class="text-gray-700 text-3xl" id="display">0</span>
+        </div>
+        <div class="grid grid-cols-4 gap-2 mt-4">
+            <button class="calc-button" onclick="updateDisplay('7')">7</button>
+            <button class="calc-button" onclick="updateDisplay('8')">8</button>
+            <button class="calc-button" onclick="updateDisplay('9')">9</button>
+            <button class="calc-button" onclick="updateDisplay('/')">÷</button>
+            <button class="calc-button" onclick="updateDisplay('4')">4</button>
+            <button class="calc-button" onclick="updateDisplay('5')">5</button>
+            <button class="calc-button" onclick="updateDisplay('6')">6</button>
+            <button class="calc-button" onclick="updateDisplay('*')">×</button>
+            <button class="calc-button" onclick="updateDisplay('1')">1</button>
+            <button class="calc-button" onclick="updateDisplay('2')">2</button>
+            <button class="calc-button" onclick="updateDisplay('3')">3</button>
+            <button class="calc-button" onclick="updateDisplay('-')">-</button>
+            <button class="calc-button" onclick="updateDisplay('0')">0</button>
+            <button class="calc-button" onclick="updateDisplay('.')">.</button>
+            <button class="calc-button" onclick="clearDisplay()">C</button>
+            <button class="calc-button" onclick="evaluate()">=</button>
+            <button class="calc-button" onclick="updateDisplay('+')">+</button>
+        </div>
+    </div>
+
+    <script>
+        function updateDisplay(value) {
+            let display = document.getElementById("display");
+            if (display.innerText === "0") {
+                display.innerText = value;
+            } else {
+                display.innerText += value;
+            }
+        }
+
+        function clearDisplay() {
+            document.getElementById("display").innerText = "0";
+        }
+
+        function evaluate() {
+            let display = document.getElementById("display");
+            let expression = display.innerText.replace(/×/g, '*').replace(/÷/g, '/');
+            display.innerText = eval(expression);
+        }
+    </script>
+</body>
+</html>

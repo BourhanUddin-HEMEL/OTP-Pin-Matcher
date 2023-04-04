@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OTP Verification</title>
+  </head>
+  <body>
+    <h1>OTP Verification</h1>
+
+    <div>
+      <h2>Step 1: Generate OTP</h2>
+      <button onclick="generateOTP()">Generate OTP</button>
+      <br /><br />
+      <input type="text" id="otp" placeholder="Enter OTP" />
+    </div>
+
+    <div>
+      <h2>Step 2: Enter Number</h2>
+      <button onclick="addNumber(0)">0</button>
+      <button onclick="addNumber(1)">1</button>
+      <button onclick="addNumber(2)">2</button>
+      <button onclick="addNumber(3)">3</button>
+      <button onclick="addNumber(4)">4</button>
+      <button onclick="addNumber(5)">5</button>
+      <button onclick="addNumber(6)">6</button>
+      <button onclick="addNumber(7)">7</button>
+      <button onclick="addNumber(8)">8</button>
+      <button onclick="addNumber(9)">9</button>
+      <br /><br />
+      <input type="text" id="number" placeholder="Enter number" />
+    </div>
+
+    <div>
+      <h2>Step 3: Verify OTP and Number</h2>
+      <button onclick="verify()">Verify</button>
+    </div>
+
+    <script>
+      let otp;
+      let number = "";
+
+      function generateOTP() {
+        // Generate a random 4-digit number between 1000 and 9999
+        otp = Math.floor(Math.random() * 9000) + 1000;
+        // Display the OTP in the input field
+        document.getElementById("otp").value = otp;
+      }
+
+      function addNumber(num) {
+        // Append the number to the number string
+        number += num;
+        // Display the number in the input field
+        document.getElementById("number").value = number;
+      }
+
+      function verify() {
+        // Get the user input OTP and number
+        let inputOTP = document.getElementById("otp").value;
+        let inputNumber = document.getElementById("number").value;
+
+        // Check if the OTP and number match the generated OTP and number
+        if (inputOTP === otp.toString() && inputNumber === number) {
+          alert("OTP and number verification successful!");
+        } else {
+          alert("OTP and number verification failed. Please try again.");
+        }
+
+        // Clear the OTP and number fields
+        document.getElementById("otp").value = "";
+        document.getElementById("number").value = "";
+      }
+    </script>
+  </body>
+</html>
